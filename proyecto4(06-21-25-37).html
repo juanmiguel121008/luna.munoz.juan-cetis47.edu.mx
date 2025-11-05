@@ -1,0 +1,79 @@
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>¡A que no Adivinas!</title>
+  <style>
+
+      {font-family: Comic Sans MS, sans-serif;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+      text-align: center;
+      margin-top: 100px;
+      color: #333;
+    }
+   
+    h1 {
+      color: #2e2e2e;
+    }
+    input {
+      padding: 10px;
+      width: 60px;
+      font-size: 20px;
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a048;
+    }
+    #mensaje {
+      font-size: 25px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>¡A que no Adivinas! </h1>
+  <p>Estoy pensando en un número del 1 al 15</p>
+
+  <input type="number" id="numero" min="1" max="15">
+  <button onclick="verificar()">Adivinar</button>
+
+  <p id="mensaje"></p>
+    <a href="index"><button class="translate-btn">salir de la pagina y volver</button>
+  <a href="index"><button onclick="history.back()">
+  <script>
+    // Generar un número aleatorio entre 1 y 15
+    let numeroSecreto = Math.floor(Math.random() * 15) + 1;
+    let intentos = 0;
+
+    function verificar() {
+      const valor = parseInt(document.getElementById("numero").value);
+      const mensaje = document.getElementById("mensaje");
+      intentos++;
+
+      if (isNaN(valor)) {
+        mensaje.textContent = "Por favor, escribe un número válido.";
+      } else if (valor < 1 || valor > 15) {
+        mensaje.textContent = "El número debe estar entre 1 y 15.";
+      } else if (valor === numeroSecreto) {
+        mensaje.textContent = ` ¡Felicidades! Adivinaste el número ${numeroSecreto} en ${intentos} intentos.`;
+        mensaje.style.color = "#00FF00";
+      } else if (valor < numeroSecreto) {
+        mensaje.textContent = "El número secreto es más grande.";
+        mensaje.style.color = "#FFC0CB";
+      } else {
+        mensaje.textContent = "El número secreto es más pequeño.";
+        mensaje.style.color = "#800080";
+      }
+    }
+  </script>
+</body>
+</html>
